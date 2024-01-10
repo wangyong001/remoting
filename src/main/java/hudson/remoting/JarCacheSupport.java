@@ -105,7 +105,7 @@ public abstract class JarCacheSupport extends JarCache {
                 // Deduplication: There is a risk that multiple downloadables get scheduled, hence we check if
                 // the promise is actually in the queue
                 Future<URL> inprogressDownload = inprogress.get(key);
-                if (promise != inprogressDownload) {
+                if (promise != inprogressDownload && inprogressDownload != null) {
                     // Duplicated entry due to the race condition, do nothing
                     return;
                 }
